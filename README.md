@@ -5,7 +5,7 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL3.0-green)](./LICENSE)
 
 <p>
-    <img width="90%" alt="pipeline", src="./assets/teaser.png">
+    <img width="100%" alt="pipeline", src="./assets/teaser.png">
 </p>
 
 </h4>
@@ -13,14 +13,17 @@
 This repository will contain the official implementation of the paper: *FreeGave: 3D Physics Learning from Dynamic Videos by Gaussian Velocity*.
 FreeGave is a framework that learns 3D geometry, appearance and velocity purely from multi-view videos, achieving SOTA performance in future extrapolation task on four datasets. 
 
-Please feel free to contact me via jinxi.li@connect.polyu.hk or open an issue if you have any questions or suggestions.
+Please feel free to contact us via jinxi.li@connect.polyu.hk or open an issue if you have any questions or suggestions.
 
 ## 📹 Demo
 
+<p>
+    <img width="100%" alt="pipeline", src="./assets/demo.gif">
+</p>
 
 
 ## 📢 News
-- **2025-02-26**: FreeGave is accepted by CVPR. 
+- **2025-02-26**: FreeGave is accepted by CVPR2025 🎉！ 
 
 ## 📋 TODO
 - [ ] Submit the paper onto arXiv.
