@@ -5,7 +5,7 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL3.0-green)](./LICENSE)
 
 <p>
-    <img width="100%" alt="pipeline", src="./assets/teaser.png">
+    <img width="100%" alt="pipeline" src="./assets/teaser.png">
 </p>
 
 </h4>
@@ -18,7 +18,7 @@ Please feel free to contact us via jinxi.li@connect.polyu.hk or open an issue if
 ## 📹 Demo
 
 <p>
-    <img width="100%" alt="pipeline", src="./assets/demo.gif">
+    <img width="100%" alt="pipeline" src="./assets/demo.gif">
 </p>
 
 
