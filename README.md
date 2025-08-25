@@ -72,6 +72,11 @@ We split the dataset as:
 - **val**: contains the frames within observed time interval but for novel views, used for evaluating *novel-view interpolation*.
 - **test**: contains the frames in unobserved **future** time for both observed and novel views, used for evaluating *future extrapolation*.
 
+Datasets can be downloaded from HuggingFace: 
+- [Dynamic Objects](https://huggingface.co/datasets/scintigimcki/DynamicObjects)
+- [Dynamic Indoor Scenes](https://huggingface.co/datasets/scintigimcki/DynamicIndoorScenes)
+
+
 ## 😊 Acknowledgement
 This work is adapted from [Deformable-3DGS](https://github.com/ingra14m/Deformable-3D-Gaussians) and [NVFi](https://github.com/vLAR-group/NVFi),
 and we would like to thank the authors for their great work.
