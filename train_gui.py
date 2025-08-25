@@ -23,7 +23,6 @@ import tqdm
 from utils.image_utils import psnr
 from argparse import ArgumentParser, Namespace
 from arguments import ModelParams, PipelineParams, OptimizationParams
-from train import training_report
 import math
 from utils.gui_utils import orbit_camera, OrbitCamera
 import numpy as np
