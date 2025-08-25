@@ -53,6 +53,75 @@ def getProjectionMatrix(znear, zfar, fovX, fovY):
     return P
 
 
+
+def training_report(tb_writer, iteration, Ll1, loss, l1_loss, elapsed, testing_iterations, scene: Scene, renderFunc,
+                    renderArgs, deform, load2gpu_on_the_fly, is_6dof=False):
+    if tb_writer:
+        tb_writer.add_scalar('train_loss_patches/l1_loss', Ll1.item(), iteration)
+        tb_writer.add_scalar('train_loss_patches/total_loss', loss.item(), iteration)
+        tb_writer.add_scalar('iter_time', elapsed, iteration)
+
+    test_psnr = 0.0
+    # Report test and samples of training set
+    if iteration in testing_iterations:
+        torch.cuda.empty_cache()
+        validation_configs = ({'name': 'test', 'cameras': scene.getTestCameras()},
+                              {'name': 'train',
+                               'cameras': [scene.getTrainCameras()[idx % len(scene.getTrainCameras())] for idx in
+                                           range(5, 30, 5)]})
+
+        for config in validation_configs:
+            if config['cameras'] and len(config['cameras']) > 0:
+                # images = torch.tensor([], device="cuda")
+                # gts = torch.tensor([], device="cuda")
+                images = []
+                gts = []
+                for idx, viewpoint in enumerate(config['cameras']):
+                    if load2gpu_on_the_fly:
+                        viewpoint.load2device()
+                    fid = viewpoint.fid
+                    xyz = scene.gaussians.get_xyz
+                    # deform_code = scene.gaussians.get_deform_code
+                    deform_code = deform.code_field(xyz)
+                    time_input = fid.unsqueeze(0).expand(xyz.shape[0], -1)
+                    d_xyz, d_rotation, d_scaling = deform.step(xyz.detach(), time_input, deform_code)
+                    image = torch.clamp(
+                        renderFunc(viewpoint, scene.gaussians, *renderArgs, d_xyz, d_rotation, d_scaling, is_6dof)["render"],
+                        0.0, 1.0).cpu()
+                    gt_image = torch.clamp(viewpoint.original_image.cpu(), 0.0, 1.0)
+                    # images = torch.cat((images, image.unsqueeze(0)), dim=0)
+                    # gts = torch.cat((gts, gt_image.unsqueeze(0)), dim=0)
+                    images.append(image)
+                    gts.append(gt_image)
+
+                    if load2gpu_on_the_fly:
+                        viewpoint.load2device('cpu')
+                    if tb_writer and (idx < 5):
+                        tb_writer.add_images(config['name'] + "_view_{}/render".format(viewpoint.image_name),
+                                             image[None], global_step=iteration)
+                        if iteration == testing_iterations[0]:
+                            tb_writer.add_images(config['name'] + "_view_{}/ground_truth".format(viewpoint.image_name),
+                                                 gt_image[None], global_step=iteration)
+
+                images = torch.stack(images, dim=0)
+                gts = torch.stack(gts, dim=0)
+                l1_test = l1_loss(images, gts)
+                psnr_test = psnr(images, gts).mean()
+                if config['name'] == 'test' or len(validation_configs[0]['cameras']) == 0:
+                    test_psnr = psnr_test
+                print("\n[ITER {}] Evaluating {}: L1 {} PSNR {}".format(iteration, config['name'], l1_test, psnr_test))
+                if tb_writer:
+                    tb_writer.add_scalar(config['name'] + '/loss_viewpoint - l1_loss', l1_test, iteration)
+                    tb_writer.add_scalar(config['name'] + '/loss_viewpoint - psnr', psnr_test, iteration)
+
+        if tb_writer:
+            tb_writer.add_histogram("scene/opacity_histogram", scene.gaussians.get_opacity, iteration)
+            tb_writer.add_scalar('total_points', scene.gaussians.get_xyz.shape[0], iteration)
+        torch.cuda.empty_cache()
+
+    return test_psnr
+
+
 class MiniCam:
     def __init__(self, c2w, width, height, fovy, fovx, znear, zfar, fid):
         # c2w (pose) should be in NeRF convention.
