@@ -30,7 +30,7 @@ Please feel free to contact us via [jinxi.li@connect.polyu.hk](jinxi.li@connect.
 ## 📋 TODO
 - [x] Submit the paper onto arXiv. 
 - [x] Release training codes. 
-- [ ] Release FreeGave-GoPro dataset.
+- [x] Release FreeGave-GoPro dataset.
 - [ ] Release pretrained checkpoints.
 
 
@@ -75,6 +75,7 @@ We split the dataset as:
 Datasets can be downloaded from HuggingFace: 
 - [Dynamic Objects](https://huggingface.co/datasets/scintigimcki/DynamicObjects)
 - [Dynamic Indoor Scenes](https://huggingface.co/datasets/scintigimcki/DynamicIndoorScenes)
+- [FreeGave-GoPro](https://huggingface.co/datasets/scintigimcki/FreeGave-GoPro)
 
 
 ## 😊 Acknowledgement
