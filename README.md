@@ -2,7 +2,7 @@
 
 <h4 align="center">
 
-[![License: CC-BY-NC-SA](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-green)](./LICENSE)
+[![License: CC-BY-NC-SA](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-blue)](./LICENSE)
 [![arXiv](https://img.shields.io/badge/arXiv-2506.07865-b31b1b)](https://arxiv.org/abs/2506.07865)
 
 <p>
