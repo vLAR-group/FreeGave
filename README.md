@@ -76,6 +76,7 @@ Datasets can be downloaded from HuggingFace:
 - [Dynamic Objects](https://huggingface.co/datasets/scintigimcki/DynamicObjects)
 - [Dynamic Indoor Scenes](https://huggingface.co/datasets/scintigimcki/DynamicIndoorScenes)
 - [FreeGave-GoPro](https://huggingface.co/datasets/scintigimcki/FreeGave-GoPro)
+- [NVIDIA Dynamic Scenes](https://huggingface.co/datasets/scintigimcki/DynScenesExtrap)
 
 
 ## 😊 Acknowledgement
