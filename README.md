@@ -24,6 +24,7 @@ Please feel free to contact us via [jinxi.li@connect.polyu.hk](jinxi.li@connect.
 
 
 ## 📢 News
+- **2026-07-04**: [PhysMani](https://github.com/vLAR-group/PhysMani), a new Robotics model for dynamic manipulation using FreeGave as the world model is accepted by ECCV20206  🎉!
 - **2025-06-14**: Our poster is successfully presented in Nashville！ 
 - **2025-02-26**: FreeGave is accepted by CVPR2025 🎉！ 
 
@@ -31,7 +32,6 @@ Please feel free to contact us via [jinxi.li@connect.polyu.hk](jinxi.li@connect.
 - [x] Submit the paper onto arXiv. 
 - [x] Release training codes. 
 - [x] Release FreeGave-GoPro dataset.
-- [ ] Release pretrained checkpoints.
 
 
 ## ⚙️ Installation
